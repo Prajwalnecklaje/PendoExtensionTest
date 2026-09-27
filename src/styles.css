@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --page: #f7f7fc;
+    --surface: #ffffff;
+    --surface-subtle: #fafaff;
+    --surface-raised: #ffffff;
+    --text: #171a28;
+    --muted: #69708c;
+    --line: #e7e8f0;
+    --line-strong: #d9dbe7;
+    --brand: #6852df;
+    --brand-soft: #f1efff;
+    --sidebar: #181a2b;
+    --sidebar-muted: #9499b5;
+  }
+
+  .dark {
+    color-scheme: dark;
+    --page: #10111d;
+    --surface: #191b2a;
+    --surface-subtle: #141624;
+    --surface-raised: #202236;
+    --text: #f5f5fb;
+    --muted: #a3a8be;
+    --line: #2d3045;
+    --line-strong: #3a3d54;
+    --brand: #9987ff;
+    --brand-soft: rgba(153, 135, 255, 0.13);
+    --sidebar: #10111d;
+    --sidebar-muted: #9297b2;
+  }
+
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    min-width: 320px;
+    scroll-behavior: smooth;
+    background: var(--page);
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+    background: var(--page);
+    color: var(--text);
+    font-family: Inter, 'Avenir Next', Avenir, ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    color: #fff;
+    background: #6852df;
+  }
+
+  :focus-visible {
+    outline: 2px solid #7d66f5;
+    outline-offset: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background: #c7cada;
+    background-clip: padding-box;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: #4a4f69;
+    background-clip: padding-box;
+  }
+}
+
+@layer components {
+  .menu-action {
+    @apply flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-xs font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white;
+  }
+  .app-surface {
+    @apply border border-[var(--line)] bg-[var(--surface)] text-[var(--text)];
+  }
+
+  .app-card {
+    @apply app-surface rounded-2xl shadow-card;
+  }
+
+  .app-card-hover {
+    @apply transition duration-200 hover:-translate-y-0.5 hover:shadow-soft;
+  }
+
+  .subtle-grid {
+    background-image: linear-gradient(rgba(104, 82, 223, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(104, 82, 223, 0.035) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+
+  .dark .subtle-grid {
+    background-image: linear-gradient(rgba(153, 135, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(153, 135, 255, 0.05) 1px, transparent 1px);
+  }
+
+  .noise-overlay {
+    position: relative;
+  }
+
+  .noise-overlay::after {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    content: '';
+  }
+
+  .gradient-orb {
+    filter: blur(48px);
+    opacity: 0.56;
+    pointer-events: none;
+  }
+
+  .skeleton {
+    overflow: hidden;
+    background: linear-gradient(90deg, var(--surface-subtle) 25%, rgba(145, 145, 185, 0.13) 37%, var(--surface-subtle) 63%);
+    background-size: 400% 100%;
+    animation: shimmer 1.45s ease infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+@keyframes slide-up {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  0% { opacity: 0; transform: scale(.97); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@layer utilities {
+  .animate-slide-up {
+    animation: slide-up .24s ease-out both;
+  }
+
+  .animate-scale-in {
+    animation: scale-in .18s ease-out both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

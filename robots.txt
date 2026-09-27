@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /projects
+Disallow: /analytics
+Disallow: /reports
+Disallow: /team
+Disallow: /billing
+Disallow: /profile
+Disallow: /settings
+Disallow: /embedded-content
+Disallow: /embed-preview
+Sitemap: https://blossomss.in/sitemap.xml
