@@ -19,16 +19,7 @@ Production-oriented React/Vite workspace application deployed to Netlify.
 4. Add `https://blossomss.in/verify-email` and `https://blossomss.in/reset-password` to the allowed redirect URLs.
 5. Configure the production email provider/templates in Supabase Auth. The default Supabase mail service is intended for development and has rate limits; use a custom SMTP provider for production email volume.
 6. In Netlify, add:
-   - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_ANON_KEY`
-   - `ZOHO_SMTP_HOST`
-   - `ZOHO_SMTP_PORT`
-   - `ZOHO_SMTP_SECURE`
-   - `ZOHO_SMTP_USER`
-   - `ZOHO_SMTP_PASS`
-   - `ZOHO_FROM_NAME`
-   - `ZOHO_FROM_ADDRESS`
-   - `APP_BASE_URL=https://blossomss.in`
+   `
 7. Deploy with `npm run build`.
 
 ## Security
